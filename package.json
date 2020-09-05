@@ -1,0 +1,13 @@
+{
+	"name": "contactMessenger",
+	"version": "1.0.0",
+	"description": "manages your friends and allows you to chat(hopefully)",
+	"main": "sever.js",
+	"scripts": {
+		"start": "node sever.js",
+		"sever": "nodemon sever.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}
