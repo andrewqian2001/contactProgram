@@ -8,6 +8,9 @@ const PORT = process.env.PORT || 5000;
 //Connects database
 connectDB();
 
+//init middleware
+app.use(express.json({ extended: false })); //allows us to send/recieve json data
+
 //declares routes
 app.use("/api/users", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
