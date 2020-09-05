@@ -21,4 +21,5 @@ const UserSchema = mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("user", UserSchema);
+module.exports = mongoose.model("user", UserSchema); //these are models
+//an instance of a model is called a document, Models are responsible for creating and reading documents from the underlying MongoDB database.
