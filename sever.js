@@ -1,9 +1,12 @@
 const express = require("express");
-
+const connectDB = require("./config/db");
 const app = express();
 
 //checks if there is an env variable called port first(this will be used in production), otherwise it uses the local host
 const PORT = process.env.PORT || 5000;
+
+//Connects database
+connectDB();
 
 //declares routes
 app.use("/api/users", require("./routes/users"));
