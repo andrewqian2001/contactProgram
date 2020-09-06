@@ -1,4 +1,4 @@
-//Register
+//Register users
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
@@ -54,6 +54,7 @@ router.post(
 				},
 			};
 
+			//creates token for user id
 			jwt.sign(
 				payload,
 				config.get("jwtSecret"),
@@ -62,7 +63,7 @@ router.post(
 				},
 				(err, token) => {
 					if (err) throw err;
-					res.json({ token });
+					res.json({ token }); //sends back the token
 				}
 			);
 
