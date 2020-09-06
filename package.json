@@ -5,7 +5,10 @@
 	"main": "sever.js",
 	"scripts": {
 		"start": "node sever.js",
-		"sever": "nodemon sever.js"
+		"sever": "nodemon sever.js",
+		"client": "npm start --prefix client",
+		"clientinstall": "npm install --prefix client",
+		"dev": "concurrently \"npm run sever\" \"npm run client\""
 	},
 	"keywords": [],
 	"author": "",
