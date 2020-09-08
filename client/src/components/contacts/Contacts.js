@@ -16,7 +16,9 @@ const Contacts = () => {
 						return <ContactItem key={contact.id} contact={contact} />;
 				  })
 				: contacts.map((contact) => {
-						return <ContactItem key={contact.id} contact={contact} />;
+						return (
+							<ContactItem key={contact.id} contact={contact} friend={true} />
+						);
 				  })}
 		</Fragment>
 	);

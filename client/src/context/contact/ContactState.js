@@ -7,6 +7,8 @@ import {
 	DELETE_CONTACT,
 	FILTER_CONTACT,
 	CLEAR_FILTER_CONTACT,
+	SEARCH_CONTACT,
+	CLEAR_SEARCH,
 } from "../types";
 
 const ContactState = (props) => {
@@ -27,9 +29,31 @@ const ContactState = (props) => {
 				id: "7",
 			},
 		],
+		AllContacts: [
+			{
+				name: "John Cena",
+				email: "huancena@gmail.com",
+				phone: "91209312",
+				type: "professional",
+				id: "5",
+			},
+			{
+				name: "dowiaj",
+				email: "wapjd@gmail.com",
+				phone: "1111111111",
+				type: "personal",
+				id: "7",
+			},
+			{
+				name: "hokage",
+				email: "hokage@gmail.com",
+				phone: "123345",
+				type: "personal",
+				id: "8",
+			},
+		],
 		filteredContacts: null,
-		filteredSearch: null,
-		currentContact: null,
+		searchedContacts: null,
 	};
 	const [state, dispatch] = useReducer(ContactReducer, initialState);
 
@@ -53,9 +77,15 @@ const ContactState = (props) => {
 		dispatch({ type: CLEAR_FILTER_CONTACT });
 	};
 
-	//Send friend request
+	//Search all contacts
+	const searchContacts = (text) => {
+		dispatch({ type: SEARCH_CONTACT, payload: text });
+	};
 
-	//Accept friend request
+	//Clear Search
+	const clearSearch = () => {
+		dispatch({ type: CLEAR_SEARCH });
+	};
 
 	return (
 		<ContactContext.Provider
@@ -66,6 +96,10 @@ const ContactState = (props) => {
 				filteredContacts: state.filteredContacts,
 				filterContacts,
 				clearFilterContact,
+				allContacts: state.AllContacts,
+				searchContacts,
+				searchedContacts: state.searchedContacts,
+				clearSearch,
 			}}
 		>
 			{props.children}

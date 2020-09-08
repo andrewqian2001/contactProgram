@@ -3,6 +3,8 @@ import {
 	DELETE_CONTACT,
 	FILTER_CONTACT,
 	CLEAR_FILTER_CONTACT,
+	SEARCH_CONTACT,
+	CLEAR_SEARCH,
 } from "../types";
 
 export default (state, action) => {
@@ -32,6 +34,19 @@ export default (state, action) => {
 			return {
 				...state,
 				filteredContacts: null,
+			};
+		case SEARCH_CONTACT:
+			return {
+				...state,
+				searchedContacts: state.AllContacts.filter((contact) => {
+					const regex = new RegExp(`${action.payload}`, "gi");
+					return contact.name.match(regex) || contact.email.match(regex);
+				}),
+			};
+		case CLEAR_SEARCH:
+			return {
+				...state,
+				searchedContacts: null,
 			};
 		default:
 			return state;
