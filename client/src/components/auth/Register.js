@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AlertContext from "../../context/alert/AlertContext";
 import AuthContext from "../../context/auth/AuthContext";
-const Register = () => {
+const Register = (props) => {
 	const [user, setUser] = useState({
 		name: "",
 		email: "",
@@ -15,19 +15,34 @@ const Register = () => {
 	const { name, email, password, password2, phone } = user;
 
 	const authContext = useContext(AuthContext);
-	const { register } = authContext;
+	const { register, error, clearErrors, isAuthenticated } = authContext;
 
+	//we get error from the backend
+	useEffect(() => {
+		if (isAuthenticated) {
+			props.history.push("/"); //this redirects the user to the home page
+		}
+
+		if (error === "user already exists") {
+			setAlert(error, "danger");
+			clearErrors();
+		}
+		// eslint-disable-next-line
+	}, [error, isAuthenticated, props.history]); //when error changes useEffect is called
+
+	//Changes the state when the input fields change
 	const onChange = (e) => {
 		setUser({ ...user, [e.target.name]: e.target.value });
 	};
 
+	//submits the info if valid, registers user to database with register method in AuthState
 	const onSubmit = (e) => {
-		console.log("wack");
 		if (name === "" || email === "" || password === "") {
 			setAlert("Please enter all fields", "danger");
 		} else if (password !== password2) {
 			setAlert("Passwords do not match", "danger");
 		} else {
+			//function from state
 			register({
 				name,
 				email,

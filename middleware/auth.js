@@ -5,9 +5,9 @@ const config = require("config");
 
 //middle ware is a function that has access to res and req objects, this is an example
 module.exports = function (req, res, next) {
-	//Get the token from the header
+	//Get the token from the header, it is set using setAuthToken in utils
 	const token = req.header("x-auth-token");
-	console.log("Does not reach here");
+
 	if (!token) {
 		//status 401 is unauthorized
 		return res.status(401).json({ msg: "No token, access denied" });

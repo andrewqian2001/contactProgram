@@ -11,7 +11,9 @@ const AlertState = (props) => {
 
 	//Set Alert
 	const setAlert = (msg, type) => {
-		const id = uuidv4();
+		//msg is the message that will be outputted, type is just for css
+
+		const id = uuidv4(); //id is so that we know which alert to remove
 		dispatch({
 			type: SET_ALERT,
 			payload: { msg, type, id },

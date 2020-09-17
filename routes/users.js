@@ -6,6 +6,20 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const auth = require("../middleware/auth");
+const User = require("../models/User");
+
+//@route    GET api/contacts
+//@desc     Get all users
+//@acess    Private
+router.get("/", auth, async (req, res) => {
+	try {
+		res.json(User);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send("Sever error");
+	}
+});
 
 //@route    POST api/user
 //@desc     Register a user

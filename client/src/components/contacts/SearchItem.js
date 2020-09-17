@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import ContactContext from "../../context/contact/ContactContext";
 import AlertContext from "../../context/alert/AlertContext";
 const SearchItem = ({ contact }) => {
-	const { id, name, email, phone } = contact;
+	//this represents a contact in the allcontact list
+	const { name, email, phone } = contact;
 
 	const contactContext = useContext(ContactContext);
 	const { addContact, contacts } = contactContext;
@@ -14,6 +15,7 @@ const SearchItem = ({ contact }) => {
 		let x = 1;
 
 		contacts.forEach((addedContact) => {
+			//checks to make sure contact is not already added
 			if (addedContact.id === contact.id) {
 				x = 0;
 			}

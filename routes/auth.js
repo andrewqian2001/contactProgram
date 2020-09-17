@@ -43,13 +43,13 @@ router.post(
 			let user = await User.findOne({ email }); //User.findOne returns a promise
 
 			if (!user) {
-				return res.status(400).json({ msg: "Invalid Email" });
+				return res.status(400).json({ msg: "Invalid Credentials" });
 			}
 
 			const isMatch = await bcrypt.compare(password, user.password); //sees if password matches encrypted password
 
 			if (!isMatch) {
-				return res.status(400).json({ msg: "Invalid Password" });
+				return res.status(400).json({ msg: "Invalid Credentials" });
 			}
 
 			//creating payload(object you want to send in the token)
